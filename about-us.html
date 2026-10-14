@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0B1426">
+<title>About Us | HIL Home</title>
+<meta name="description" content="HIL Home is a CIDB-registered G1 construction and development company based in Pasir Mas, Kelantan.">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+  /* About Us page styles */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--font-body); color: #1A1A1A; background: #FFF; line-height: 1.7; font-size: 16px; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.2; color: var(--navy); font-weight: 800; }
+  h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); }
+  h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); }
+  h3 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); font-weight: 700; }
+  p { margin-bottom: 1rem; color: #333; }
+  a { color: var(--gold); text-decoration: none; transition: 0.3s; }
+  a:hover { color: var(--navy); }
+  img { max-width: 100%; height: auto; display: block; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .section { padding: 80px 0; }
+  .section-title { text-align: center; margin-bottom: 50px; }
+  .section-title .eyebrow { display: inline-block; font-family: var(--font-head); font-size: 0.8rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .section-title h2 { position: relative; display: inline-block; padding-bottom: 18px; }
+  .section-title h2::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: var(--gold); border-radius: 2px; }
+
+  /* Hero */
+  .hero {
+    position: relative; min-height: 70vh; display: flex; align-items: center; justify-content: center;
+    text-align: center; color: var(--white); padding: 120px 24px 80px;
+    background: linear-gradient(135deg, rgba(11,20,38,0.78) 0%, rgba(11,20,38,0.6) 50%, rgba(11,20,38,0.85) 100%),
+      url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+  .hero .tagline { font-family: var(--font-head); font-size: 1rem; font-weight: 600; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+  .hero h1 { color: var(--white); font-size: clamp(2.5rem, 7vw, 4.5rem); font-weight: 900; letter-spacing: 2px; text-shadow: 0 4px 30px rgba(0,0,0,0.4); }
+  .hero .subtitle { font-size: clamp(1rem, 2vw, 1.2rem); color: rgba(255,255,255,0.9); margin: 24px auto 36px; max-width: 700px; font-weight: 300; }
+
+  /* About section */
+  .about { background: var(--off-white); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .about-image { position: relative; border-radius: var(--radius); overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
+  .about-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+  .about-image:hover img { transform: scale(1.05); }
+  .about-text .eyebrow { display: inline-block; font-family: var(--font-head); font-size: 0.8rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .about-text h2 { text-align: left; margin-bottom: 20px; }
+  .about-text h2::after { left: 0; transform: none; }
+  .about-text p { color: #444; margin-bottom: 1.2rem; }
+  .about-text .highlight { font-weight: 600; color: var(--navy); border-left: 4px solid var(--gold); padding-left: 16px; margin: 24px 0; font-style: italic; }
+
+  /* Company info table */
+  .info-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+  .info-table tr { border-bottom: 1px solid #E5E7EB; }
+  .info-table tr:last-child { border-bottom: none; }
+  .info-table tr:nth-child(even) { background: #FAFAF8; }
+  .info-table td { padding: 18px 24px; font-size: 0.95rem; }
+  .info-table td:first-child { font-weight: 600; color: var(--navy); width: 40%; font-family: var(--font-head); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  .info-table td:last-child { color: #444; }
+  .badge { display: inline-block; background: var(--gold); color: var(--navy); font-family: var(--font-head); font-weight: 700; font-size: 0.75rem; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .badge.active { background: #10B981; color: white; }
+
+  /* Vision & Mission */
+  .vision-mission { background: var(--navy); color: var(--white); }
+  .vision-mission h2 { color: var(--white); }
+  .vision-card { background: linear-gradient(135deg, rgba(212,175,55,0.15), rgba(212,175,55,0.05)); border: 1px solid rgba(212,175,55,0.3); border-radius: var(--radius); padding: 40px; margin-bottom: 50px; text-align: center; }
+  .vision-card h3 { color: var(--gold); font-size: 1.5rem; margin-bottom: 16px; letter-spacing: 2px; text-transform: uppercase; }
+  .vision-card p { color: rgba(255,255,255,0.92); font-size: 1.1rem; max-width: 800px; margin: 0 auto; font-style: italic; line-height: 1.8; }
+  .mission-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+  .mission-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 32px 24px; transition: all 0.3s ease; position: relative; overflow: hidden; }
+  .mission-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(212,175,55,0.4); transform: translateY(-5px); }
+  .mission-number { font-family: var(--font-head); font-size: 2.2rem; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 12px; }
+  .mission-card h4 { color: var(--white); font-size: 1.1rem; margin-bottom: 10px; font-weight: 700; }
+  .mission-card p { color: rgba(255,255,255,0.75); font-size: 0.9rem; margin: 0; }
+
+  /* Services */
+  .services { background: var(--off-white); }
+  .services-intro { text-align: center; max-width: 800px; margin: 0 auto 50px; font-size: 1.05rem; color: #555; font-family: var(--font-head); font-weight: 500; }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+  .service-card { background: var(--white); border-radius: var(--radius); padding: 36px 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: all 0.35s ease; border-top: 4px solid transparent; }
+  .service-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0,0,0,0.15); border-top-color: var(--gold); }
+  .service-card .num { font-family: var(--font-head); font-size: 3rem; font-weight: 900; color: #E5E7EB; line-height: 1; margin-bottom: 12px; }
+  .service-card h3 { font-size: 1rem; margin-bottom: 12px; color: var(--navy); text-transform: uppercase; letter-spacing: 1px; }
+  .service-card p { color: #666; font-size: 0.92rem; margin: 0; }
+
+  /* CTA */
+  .cta { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%); color: var(--white); text-align: center; padding: 80px 24px; position: relative; overflow: hidden; }
+  .cta h2 { color: var(--white); margin-bottom: 20px; }
+  .cta p { color: rgba(255,255,255,0.85); max-width: 750px; margin: 0 auto 16px; font-size: 1.05rem; }
+  .cta .closing { font-family: var(--font-head); font-weight: 700; color: var(--gold); font-size: 1.1rem; letter-spacing: 1px; margin-top: 30px; }
+
+  @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } }
+  @media (max-width: 640px) {
+    .section { padding: 60px 0; }
+    .hero { padding: 100px 20px 60px; min-height: auto; }
+    .info-table td { padding: 14px 16px; font-size: 0.88rem; }
+    .vision-card { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== SITE HEADER ==================== -->
+<header class="site-header" id="siteHeader">
+  <div class="header-container">
+    <a href="index.html" class="brand" aria-label="HIL Home">
+      <span class="brand-mark">HIL</span>
+      <span class="brand-text">
+        <span class="brand-name">HIL Home</span>
+        <span class="brand-sub">by HAZZ Impian Legacy</span>
+      </span>
+    </a>
+    <nav class="main-nav" id="mainNav" aria-label="Primary">
+      <ul>
+        <li><a href="index.html" data-nav="home">Home</a></li>
+        <li><a href="about-us.html" data-nav="about">About Us</a></li>
+        <li><a href="past-projects.html" data-nav="projects">Past Projects</a></li>
+        <li><a href="license-cert.html" data-nav="license">Licenses &amp; Certifications</a></li>
+      </ul>
+      <a href="index.html#contact" class="nav-cta">Contact Us</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ==================== HERO ==================== -->
+<header class="hero">
+  <div class="hero-content">
+    <div class="tagline">Shaping The Future</div>
+    <h1>HIL Home</h1>
+    <p class="subtitle">Building dreams, creating legacies — from Kelantan, for Malaysia, and for the World.</p>
+  </div>
+</header>
+
+<!-- ==================== ABOUT ==================== -->
+<section class="section about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80" alt="HIL Home construction project">
+      </div>
+      <div class="about-text">
+        <span class="eyebrow">About Us</span>
+        <h2>A Brief Story About the Company</h2>
+        <p>Founded in the heart of Kelantan, <strong>HIL Home</strong> was built on a simple belief: <em>every great nation begins with strong homes, strong communities, and strong values.</em></p>
+        <p>We are a construction and development company specialising in <strong>Design &amp; Build, new home construction, renovations, extensions, and property development.</strong> From the first concept to project completion, we are committed to delivering quality workmanship, innovative solutions, and exceptional customer service.</p>
+        <div class="highlight">"Construction is not just about building houses. It is about creating opportunities, strengthening families, developing communities, and leaving a legacy for future generations."</div>
+        <p>Driven by Islamic values, professional management, and a passion for excellence, we strive to become one of the region's most respected construction companies — trusted by our clients, valued by our partners, and recognised for making a meaningful difference in society.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== COMPANY INFO ==================== -->
+<section class="section" id="company-info">
+  <div class="container">
+    <div class="section-title">
+      <span class="eyebrow">Section 02</span>
+      <h2>Company Information</h2>
+    </div>
+    <table class="info-table">
+      <tr><td>Company Name</td><td>Hazz Impian Legacy</td></tr>
+      <tr><td>Registration No.</td><td>202003182747 (KT0471223-T)</td></tr>
+      <tr><td>Business Type</td><td>Partnership (Perkongsian)</td></tr>
+      <tr><td>Date of Commencement</td><td>29 July 2020</td></tr>
+      <tr><td>Registration Validity</td><td>Until 3 March 2028</td></tr>
+      <tr><td>Status</td><td><span class="badge active">Active</span></td></tr>
+      <tr><td>Registered Address</td><td>PT 716 Taman Liro, Kampung Belukar, 17000 Pasir Mas, Kelantan</td></tr>
+      <tr><td>CIDB Registration No.</td><td>0120230126-KN112689</td></tr>
+      <tr><td>CIDB Grade</td><td>G1 — B (Building), CE (Civil Engineering), ME (Mechanical &amp; Electrical)</td></tr>
+      <tr><td>CIDB Status</td><td><span class="badge">Dorman</span></td></tr>
+      <tr><td>Bumiputera Status</td><td>G1 / Kelas F — B, CE, ME (Valid 22/09/2026 – 29/09/2028)</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ==================== VISION & MISSION ==================== -->
+<section class="section vision-mission" id="vision-mission">
+  <div class="container">
+    <div class="section-title">
+      <span class="eyebrow">Section 03</span>
+      <h2>Vision &amp; Mission</h2>
+    </div>
+    <div class="vision-card">
+      <h3>Our Vision</h3>
+      <p>To become a globally recognised Islamic nation that serves as a model of peace, justice, innovation, and sustainable development, inspiring communities around the world to build a future founded on Islamic values, exemplary leadership, and human excellence.</p>
+    </div>
+    <div class="mission-grid">
+      <div class="mission-card">
+        <div class="mission-number">01</div>
+        <h4>World-Class Education</h4>
+        <p>Providing world-class education that integrates Islamic values with science, technology, and innovation.</p>
+      </div>
+      <div class="mission-card">
+        <div class="mission-number">02</div>
+        <h4>Infrastructure &amp; Growth</h4>
+        <p>Strengthening transportation, utilities, digital infrastructure, and public facilities to support economic growth.</p>
+      </div>
+      <div class="mission-card">
+        <div class="mission-number">03</div>
+        <h4>Quality Infrastructure</h4>
+        <p>Delivering quality infrastructure that improves the quality of life for every citizen.</p>
+      </div>
+      <div class="mission-card">
+        <div class="mission-number">04</div>
+        <h4>Islamic Principles in Action</h4>
+        <p>Demonstrating through action that Islamic principles can guide a modern, progressive, and prosperous society for the benefit of all humanity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SERVICES ==================== -->
+<section class="section services" id="services">
+  <div class="container">
+    <div class="section-title">
+      <span class="eyebrow">Section 04</span>
+      <h2>Our Services</h2>
+    </div>
+    <p class="services-intro">We provide integrated construction, engineering, and development solutions that transform ideas into sustainable infrastructure and thriving communities.</p>
+    <div class="services-grid">
+      <div class="service-card"><div class="num">01</div><h3>Commercial &amp; Industrial</h3><p>Development of commercial and industrial properties that support business growth and economic activity.</p></div>
+      <div class="service-card"><div class="num">02</div><h3>Project &amp; Construction Management</h3><p>Comprehensive project planning, procurement, cost control, quality assurance, risk management, and delivery from concept to completion.</p></div>
+      <div class="service-card"><div class="num">03</div><h3>Urban Planning</h3><p>Strategic planning for cities, townships, and mixed-use developments that balance economic growth, environmental sustainability, and community well-being.</p></div>
+      <div class="service-card"><div class="num">04</div><h3>Smart City Solutions</h3><p>Integration of digital technologies, intelligent infrastructure, renewable energy, and data-driven urban management to create efficient and future-ready cities.</p></div>
+      <div class="service-card"><div class="num">05</div><h3>Public Facilities Development</h3><p>Construction of schools, universities, hospitals, mosques, government buildings, parks, and community facilities that serve society.</p></div>
+      <div class="service-card"><div class="num">06</div><h3>Design &amp; Build</h3><p>We deliver integrated design and construction solutions that turn ideas into functional, sustainable, high-quality developments.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CTA ==================== -->
+<section class="cta">
+  <div class="container">
+    <h2>Let's Build Your Legacy Together</h2>
+    <p>We sincerely invite everyone to support HIL HOME — not only as a construction company, but as a local Malaysian brand striving to create quality homes, meaningful opportunities, and a lasting legacy for future generations.</p>
+    <p>Your trust, recommendation, and continued support inspire us to improve every day. Together, we can build more than houses; we can build stronger families, stronger communities, and a brighter future.</p>
+    <p class="closing">From Kelantan, for Malaysia, and for the World.</p>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="site-footer">
+  <p>© 2026 <strong>HIL Home</strong>. All rights reserved. | Reg. No. 202003182747 (KT0471223-T)</p>
+</footer>
+
+<script src="assets/js/header.js"></script>
+</body>
+</html>

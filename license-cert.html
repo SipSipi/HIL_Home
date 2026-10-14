@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0B1426">
+<title>Licenses &amp; Certifications | HIL Home</title>
+<meta name="description" content="Official licenses, registrations, and certifications of HIL Home — CIDB, SSM, Bumiputera status, and more.">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--font-body); color: #1A1A1A; background: var(--off-white); line-height: 1.7; font-size: 16px; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.2; color: var(--navy); font-weight: 800; }
+  p { margin-bottom: 1rem; color: #444; }
+  a { color: var(--gold); text-decoration: none; }
+  img { max-width: 100%; height: auto; display: block; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* Page header */
+  .page-header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%); color: var(--white); padding: 80px 24px 60px; text-align: center; position: relative; overflow: hidden; }
+  .page-header::before { content: ''; position: absolute; top: -30%; right: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(212,175,55,0.18), transparent 70%); border-radius: 50%; pointer-events: none; }
+  .page-header .container { position: relative; z-index: 2; }
+  .page-header .eyebrow { display: inline-block; font-family: var(--font-head); font-size: 0.8rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .page-header h1 { color: var(--white); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; letter-spacing: 1px; margin-bottom: 16px; }
+  .page-header p { color: rgba(255,255,255,0.85); max-width: 700px; margin: 0 auto; font-size: 1.05rem; font-weight: 300; }
+
+  /* Summary strip */
+  .summary-strip { background: var(--white); border-bottom: 1px solid var(--grey-light); padding: 30px 0; }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 24px; text-align: center; }
+  .summary-item { padding: 12px; }
+  .summary-item .label { font-family: var(--font-head); font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+  .summary-item .value { font-family: var(--font-head); font-size: 0.95rem; font-weight: 700; color: var(--navy); }
+
+  /* Section */
+  .section { padding: 70px 0; }
+  .section-title { text-align: center; margin-bottom: 40px; }
+  .section-title .eyebrow { display: inline-block; font-family: var(--font-head); font-size: 0.8rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .section-title h2 { position: relative; display: inline-block; padding-bottom: 18px; font-size: clamp(1.6rem, 4vw, 2.2rem); }
+  .section-title h2::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: var(--gold); border-radius: 2px; }
+  .section-desc { text-align: center; max-width: 720px; margin: 0 auto 44px; color: #555; font-size: 1rem; }
+
+  /* PDF card grid */
+  .doc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 28px; }
+  .doc-card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: all 0.35s ease; border: 1px solid var(--grey-light); display: flex; flex-direction: column; }
+  .doc-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.18); border-color: var(--gold); }
+
+  .doc-thumb { position: relative; width: 100%; aspect-ratio: 3 / 4; background: #EFEFEF; overflow: hidden; cursor: pointer; }
+  .doc-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 0.6s ease; }
+  .doc-card:hover .doc-thumb img { transform: scale(1.04); }
+
+  /* PDF ribbon */
+  .pdf-ribbon {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #DC2626;
+    color: white;
+    font-family: var(--font-head);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    z-index: 3;
+    box-shadow: 0 4px 12px rgba(220,38,38,0.4);
+  }
+
+  .doc-info { padding: 20px; border-top: 3px solid var(--gold); display: flex; flex-direction: column; flex-grow: 1; }
+  .doc-info h3 { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .doc-info p { font-size: 0.82rem; color: var(--grey); margin: 0 0 14px; flex-grow: 1; }
+  .doc-badge { display: inline-block; background: var(--off-white); color: var(--navy); font-size: 0.7rem; font-weight: 600; padding: 3px 10px; border-radius: 20px; margin-bottom: 14px; letter-spacing: 0.5px; text-transform: uppercase; align-self: flex-start; }
+
+  /* Action buttons */
+  .doc-actions { display: flex; gap: 8px; margin-top: auto; }
+  .doc-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-family: var(--font-head);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    transition: all 0.25s ease;
+    text-decoration: none;
+  }
+  .doc-btn svg { width: 13px; height: 13px; }
+  .doc-btn-view { background: var(--navy); color: var(--white); }
+  .doc-btn-view:hover { background: var(--gold); color: var(--navy); }
+  .doc-btn-download { background: var(--off-white); color: var(--navy); border: 1px solid var(--grey-light); }
+  .doc-btn-download:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+
+  /* PDF Modal */
+  .pdf-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(11,20,38,0.97);
+    z-index: 9999;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .pdf-modal.active { display: flex; opacity: 1; }
+
+  .pdf-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 22px;
+    background: var(--navy-soft);
+    border-bottom: 2px solid var(--gold);
+    flex-shrink: 0;
+    gap: 16px;
+  }
+  .pdf-modal-title {
+    color: var(--white);
+    font-family: var(--font-head);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .pdf-modal-actions { display: flex; gap: 10px; flex-shrink: 0; }
+  .pdf-modal-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 16px;
+    border-radius: 6px;
+    font-family: var(--font-head);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    background: var(--gold);
+    color: var(--navy);
+  }
+  .pdf-modal-btn:hover { background: var(--white); color: var(--navy); }
+  .pdf-modal-btn.close {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 9px 14px;
+  }
+  .pdf-modal-btn.close:hover { background: #DC2626; border-color: #DC2626; color: white; }
+
+  .pdf-modal-body { flex-grow: 1; position: relative; background: #2A2A2A; }
+  .pdf-modal-body iframe { width: 100%; height: 100%; border: none; display: block; }
+
+  .pdf-loader {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.7);
+    font-family: var(--font-head);
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    pointer-events: none;
+  }
+  .pdf-loader::before {
+    content: '';
+    width: 32px;
+    height: 32px;
+    border: 3px solid rgba(212,175,55,0.2);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+    margin-right: 14px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .pdf-modal-body.loaded .pdf-loader { display: none; }
+
+  /* Download note */
+  .download-note { background: var(--white); border-left: 4px solid var(--gold); border-radius: var(--radius); padding: 24px 28px; margin-top: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .download-note .icon { flex-shrink: 0; width: 48px; height: 48px; background: var(--gold); color: var(--navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 700; }
+  .download-note p { margin: 0; color: var(--navy); font-size: 0.95rem; }
+  .download-note strong { color: var(--navy); }
+
+  /* CTA */
+  .cta { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%); color: var(--white); text-align: center; padding: 70px 24px; position: relative; overflow: hidden; }
+  .cta h2 { color: var(--white); margin-bottom: 16px; font-size: clamp(1.6rem, 4vw, 2.2rem); }
+  .cta p { color: rgba(255,255,255,0.85); max-width: 650px; margin: 0 auto 30px; }
+  .btn { display: inline-block; padding: 16px 36px; border-radius: 50px; font-family: var(--font-head); font-weight: 700; font-size: 0.95rem; letter-spacing: 0.5px; cursor: pointer; border: 2px solid transparent; transition: all 0.3s ease; text-transform: uppercase; }
+  .btn-primary { background: var(--gold); color: var(--navy); }
+  .btn-primary:hover { background: var(--gold-light); color: var(--navy); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(212,175,55,0.4); }
+
+  @media (max-width: 640px) {
+    .section { padding: 50px 0; }
+    .page-header { padding: 60px 20px 50px; }
+    .doc-grid { grid-template-columns: 1fr; gap: 22px; }
+    .pdf-modal-header { padding: 12px 16px; flex-direction: column; align-items: stretch; }
+    .pdf-modal-actions { justify-content: flex-end; }
+    .pdf-modal-title { font-size: 0.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== SITE HEADER ==================== -->
+<header class="site-header" id="siteHeader">
+  <div class="header-container">
+    <a href="index.html" class="brand" aria-label="HIL Home">
+      <span class="brand-mark">HIL</span>
+      <span class="brand-text">
+        <span class="brand-name">HIL Home</span>
+        <span class="brand-sub">by HAZZ Impian Legacy</span>
+      </span>
+    </a>
+    <nav class="main-nav" id="mainNav" aria-label="Primary">
+      <ul>
+        <li><a href="index.html" data-nav="home">Home</a></li>
+        <li><a href="about-us.html" data-nav="about">About Us</a></li>
+        <li><a href="past-projects.html" data-nav="projects">Past Projects</a></li>
+        <li><a href="license-cert.html" data-nav="license">Licenses &amp; Certifications</a></li>
+      </ul>
+      <a href="index.html#contact" class="nav-cta">Contact Us</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ==================== PAGE HEADER ==================== -->
+<header class="page-header">
+  <div class="container">
+    <span class="eyebrow">Official Documents</span>
+    <h1>Licenses &amp; Certifications</h1>
+    <p>Verified registrations, licences, and certifications of HIL Home — issued by CIDB, SSM, and the Ministry of Entrepreneur Development and Cooperatives.</p>
+  </div>
+</header>
+
+<!-- ==================== SUMMARY STRIP ==================== -->
+<section class="summary-strip">
+  <div class="container">
+    <div class="summary-grid">
+      <div class="summary-item"><div class="label">SSM No.</div><div class="value">202003182747 (KT0471223-T)</div></div>
+      <div class="summary-item"><div class="label">CIDB No.</div><div class="value">0120230126-KN112689</div></div>
+      <div class="summary-item"><div class="label">Grade</div><div class="value">G1 — B / CE / ME</div></div>
+      <div class="summary-item"><div class="label">Status</div><div class="value">Active</div></div>
+      <div class="summary-item"><div class="label">Validity</div><div class="value">Until 29 Sept 2028</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PDF DOCUMENT GALLERY ==================== -->
+<section class="section" id="documents">
+  <div class="container">
+    <div class="section-title">
+      <span class="eyebrow">Section 07</span>
+      <h2>Company Registration &amp; Licence</h2>
+    </div>
+    <p class="section-desc">
+      Click <strong>View</strong> to open the original PDF in a built-in viewer, or <strong>Download</strong> to save a copy for your records.
+    </p>
+
+    <div class="doc-grid">
+
+      <!-- ============ CIDB PDF ============ -->
+      <div class="doc-card">
+        <div class="doc-thumb" data-pdf="assets/license_cert/CIDB.pdf" data-title="CIDB Registration & Certifications">
+          <span class="pdf-ribbon">PDF</span>
+          <img src="assets/license_cert/thumbs/cidb-thumb.jpg" alt="CIDB Registration & Certifications" loading="lazy">
+        </div>
+        <div class="doc-info">
+          <h3>CIDB Registration</h3>
+          <p>Perakuan Pendaftaran Kontraktor &amp; SPKK</p>
+          <span class="doc-badge">CIDB</span>
+          <div class="doc-actions">
+            <button class="doc-btn doc-btn-view" data-pdf="assets/license_cert/CIDB.pdf" data-title="CIDB Registration & Certifications">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              View
+            </button>
+            <a class="doc-btn doc-btn-download" href="assets/license_cert/CIDB.pdf" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ PKK PDF ============ -->
+      <div class="doc-card">
+        <div class="doc-thumb" data-pdf="assets/license_cert/PKK.pdf" data-title="Bumiputera Status Certificate">
+          <span class="pdf-ribbon">PDF</span>
+          <img src="assets/license_cert/thumbs/pkk-thumb.jpg" alt="Bumiputera Status Certificate" loading="lazy">
+        </div>
+        <div class="doc-info">
+          <h3>Bumiputera Status</h3>
+          <p>Sijil Taraf Bumiputera Kontraktor Kerja</p>
+          <span class="doc-badge">PKK</span>
+          <div class="doc-actions">
+            <button class="doc-btn doc-btn-view" data-pdf="assets/license_cert/PKK.pdf" data-title="Bumiputera Status Certificate">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              View
+            </button>
+            <a class="doc-btn doc-btn-download" href="assets/license_cert/PKK.pdf" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ SSM PDF ============ -->
+      <div class="doc-card">
+        <div class="doc-thumb" data-pdf="assets/license_cert/SSM.pdf" data-title="SSM Business Registration">
+          <span class="pdf-ribbon">PDF</span>
+          <img src="assets/license_cert/thumbs/ssm-thumb.jpg" alt="SSM Business Registration" loading="lazy">
+        </div>
+        <div class="doc-info">
+          <h3>SSM Registration</h3>
+          <p>Maklumat Perniagaan &amp; Pemilik Terkini</p>
+          <span class="doc-badge">SSM</span>
+          <div class="doc-actions">
+            <button class="doc-btn doc-btn-view" data-pdf="assets/license_cert/SSM.pdf" data-title="SSM Business Registration">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              View
+            </button>
+            <a class="doc-btn doc-btn-download" href="assets/license_cert/SSM.pdf" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Download note -->
+    <div class="download-note">
+      <div class="icon">i</div>
+      <p><strong>Need a certified copy?</strong> Original documents are available for verification upon request. Please contact us at <a href="tel:+60196350392">+60 19 635 0392</a> for any tender or compliance purposes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CTA ==================== -->
+<section class="cta">
+  <div class="container">
+    <h2>Committed to Transparency &amp; Compliance</h2>
+    <p>Every project we undertake is backed by fully verified credentials. Partner with a construction company you can trust.</p>
+    <a href="index.html#contact" class="btn btn-primary">Contact Us</a>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="site-footer">
+  <p>© 2026 <strong>HIL Home</strong>. All rights reserved. | Reg. No. 202003182747 (KT0471223-T)</p>
+</footer>
+
+<!-- ==================== PDF MODAL VIEWER ==================== -->
+<div class="pdf-modal" id="pdfModal">
+  <div class="pdf-modal-header">
+    <div class="pdf-modal-title" id="pdfModalTitle">Document</div>
+    <div class="pdf-modal-actions">
+      <a class="pdf-modal-btn" id="pdfModalDownload" href="#" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:13px;height:13px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download
+      </a>
+      <button class="pdf-modal-btn close" id="pdfModalClose" aria-label="Close">&times; Close</button>
+    </div>
+  </div>
+  <div class="pdf-modal-body" id="pdfModalBody">
+    <div class="pdf-loader">Loading PDF…</div>
+    <iframe id="pdfModalFrame" src="" title="PDF Viewer"></iframe>
+  </div>
+</div>
+
+<script src="assets/js/header.js"></script>
+<script>
+/* ============================================
+   PDF MODAL LOGIC
+   ============================================ */
+(function () {
+  const modal = document.getElementById('pdfModal');
+  const modalFrame = document.getElementById('pdfModalFrame');
+  const modalTitle = document.getElementById('pdfModalTitle');
+  const modalDownload = document.getElementById('pdfModalDownload');
+  const btnClose = document.getElementById('pdfModalClose');
+  const modalBody = document.getElementById('pdfModalBody');
+
+  function openPdf(pdfUrl, title) {
+    modalTitle.textContent = title || 'Document';
+    modalDownload.setAttribute('href', pdfUrl);
+    modalBody.classList.remove('loaded');
+    modalFrame.src = pdfUrl + '#view=FitH&toolbar=1';
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePdf() {
+    modal.classList.remove('active');
+    modalFrame.src = '';
+    document.body.style.overflow = '';
+  }
+
+  // View buttons
+  document.querySelectorAll('.doc-btn-view').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const pdf = btn.getAttribute('data-pdf');
+      const title = btn.getAttribute('data-title');
+      openPdf(pdf, title);
+    });
+  });
+
+  // Click on the thumbnail image also opens the PDF
+  document.querySelectorAll('.doc-thumb').forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      const pdf = thumb.getAttribute('data-pdf');
+      const title = thumb.getAttribute('data-title');
+      openPdf(pdf, title);
+    });
+  });
+
+  // Close on X button
+  btnClose.addEventListener('click', closePdf);
+
+  // Close on backdrop click (outside modal content)
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closePdf();
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) closePdf();
+  });
+
+  // Hide loader when iframe loads
+  modalFrame.addEventListener('load', () => {
+    modalBody.classList.add('loaded');
+  });
+})();
+</script>
+
+</body>
+</html>

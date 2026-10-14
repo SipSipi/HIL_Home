@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0B1426">
+
+<title>Past Projects | HIL Home</title>
+<meta name="description" content="Explore completed construction projects by HIL Home — homes, renovations, extensions, and more across Kelantan and Malaysia.">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--font-body); color: #1A1A1A; background: var(--off-white); line-height: 1.7; font-size: 16px; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.2; color: var(--navy); font-weight: 800; }
+  p { margin-bottom: 1rem; color: #444; }
+  a { color: var(--gold); text-decoration: none; }
+  img { max-width: 100%; height: auto; display: block; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* Page header */
+  .page-header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%); color: var(--white); padding: 90px 24px 70px; text-align: center; position: relative; overflow: hidden; }
+  .page-header::before { content: ''; position: absolute; top: -30%; right: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(212,175,55,0.18), transparent 70%); border-radius: 50%; pointer-events: none; }
+  .page-header .container { position: relative; z-index: 2; }
+  .page-header .eyebrow { display: inline-block; font-family: var(--font-head); font-size: 0.8rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .page-header h1 { color: var(--white); font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 900; letter-spacing: 1px; margin-bottom: 16px; }
+  .page-header p { color: rgba(255,255,255,0.85); max-width: 720px; margin: 0 auto; font-size: 1.05rem; font-weight: 300; }
+
+  /* Intro strip */
+  .intro-strip { background: var(--white); border-bottom: 1px solid var(--grey-light); padding: 28px 0; }
+  .intro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 24px; text-align: center; }
+  .intro-item .label { font-family: var(--font-head); font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+  .intro-item .value { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--navy); }
+
+  /* Sections by year */
+  .projects { padding: 70px 0; }
+  .year-section { margin-bottom: 80px; }
+  .year-section:last-child { margin-bottom: 0; }
+
+  .year-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid var(--gold);
+  }
+  .year-badge {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: var(--font-head);
+    font-weight: 900;
+    font-size: 1.6rem;
+    padding: 12px 28px;
+    border-radius: 50px;
+    letter-spacing: 1px;
+    box-shadow: 0 8px 24px rgba(212,175,55,0.3);
+  }
+  .year-meta { flex-grow: 1; }
+  .year-title { font-size: clamp(1.4rem, 3vw, 1.8rem); color: var(--navy); font-weight: 800; margin-bottom: 4px; }
+  .year-subtitle { font-size: 0.9rem; color: var(--grey); font-family: var(--font-head); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+
+  /* Table */
+  .project-table-wrap {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    overflow: hidden;
+    border: 1px solid var(--grey-light);
+    overflow-x: auto;
+  }
+
+  .project-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
+  }
+
+  .project-table thead {
+    background: var(--navy);
+  }
+
+  .project-table thead th {
+    color: var(--white);
+    font-family: var(--font-head);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 18px 20px;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .project-table thead th.col-no { width: 60px; text-align: center; }
+  .project-table thead th.col-value { width: 150px; text-align: right; }
+  .project-table thead th.col-date { width: 140px; text-align: center; }
+
+  .project-table tbody tr {
+    border-bottom: 1px solid var(--grey-light);
+    transition: background 0.2s ease;
+  }
+
+  .project-table tbody tr:last-child { border-bottom: none; }
+  .project-table tbody tr:nth-child(even) { background: #FAFAF8; }
+  .project-table tbody tr:hover { background: #FFF8E1; }
+
+  .project-table tbody td {
+    padding: 18px 20px;
+    font-size: 0.9rem;
+    color: #333;
+    vertical-align: top;
+    line-height: 1.55;
+  }
+
+  .project-table tbody td.col-no {
+    text-align: center;
+    font-family: var(--font-head);
+    font-weight: 800;
+    color: var(--gold);
+    font-size: 1rem;
+  }
+
+  .project-table tbody td.col-value {
+    text-align: right;
+    font-family: var(--font-head);
+    font-weight: 700;
+    color: var(--navy);
+    white-space: nowrap;
+    font-size: 0.9rem;
+  }
+
+  .project-table tbody td.col-date {
+    text-align: center;
+    font-family: var(--font-head);
+    font-weight: 600;
+    color: var(--navy-soft);
+    white-space: nowrap;
+    font-size: 0.85rem;
+  }
+
+  .project-table tbody td.col-address {
+    color: var(--grey);
+    font-size: 0.85rem;
+  }
+
+  /* Status badge */
+  .status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-family: var(--font-head);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .status-ongoing {
+    background: #FEF3C7;
+    color: #92400E;
+    border: 1px solid #FCD34D;
+  }
+  .status-completed {
+    background: #D1FAE5;
+    color: #065F46;
+    border: 1px solid #6EE7B7;
+  }
+
+  /* Year summary */
+  .year-summary {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+    margin-top: 18px;
+    padding: 16px 24px;
+    background: var(--white);
+    border-radius: var(--radius);
+    border-left: 4px solid var(--gold);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    flex-wrap: wrap;
+  }
+  .year-summary .summary-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .year-summary .summary-label {
+    font-family: var(--font-head);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+  .year-summary .summary-value {
+    font-family: var(--font-head);
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--navy);
+  }
+
+  /* Mobile card fallback for tables */
+  @media (max-width: 768px) {
+    .project-table-wrap { overflow-x: visible; }
+    .project-table { min-width: 0; }
+    .project-table thead { display: none; }
+    .project-table,
+    .project-table tbody,
+    .project-table tr,
+    .project-table td { display: block; width: 100%; }
+    .project-table tbody tr {
+      background: var(--white);
+      border: 1px solid var(--grey-light);
+      border-radius: var(--radius);
+      margin-bottom: 16px;
+      padding: 8px 0;
+    }
+    .project-table tbody tr:nth-child(even) { background: var(--white); }
+    .project-table tbody td {
+      padding: 10px 20px;
+      text-align: left !important;
+    }
+    .project-table tbody td::before {
+      content: attr(data-label);
+      display: block;
+      font-family: var(--font-head);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .project-table tbody td.col-no {
+      background: var(--navy);
+      color: var(--gold);
+      font-size: 1.1rem;
+      text-align: left !important;
+      padding: 12px 20px;
+    }
+    .project-table tbody td.col-no::before {
+      color: rgba(255,255,255,0.5);
+    }
+    .project-table tbody td.col-value,
+    .project-table tbody td.col-date {
+      text-align: left !important;
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .projects { padding: 50px 0; }
+    .year-section { margin-bottom: 60px; }
+    .page-header { padding: 60px 20px 50px; }
+    .year-header { gap: 14px; }
+    .year-badge { font-size: 1.2rem; padding: 10px 20px; }
+    .year-summary { justify-content: flex-start; gap: 20px; padding: 14px 18px; }
+  }
+
+  /* CTA */
+  .cta { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%); color: var(--white); text-align: center; padding: 80px 24px; position: relative; overflow: hidden; }
+  .cta h2 { color: var(--white); margin-bottom: 16px; font-size: clamp(1.6rem, 4vw, 2.2rem); }
+  .cta p { color: rgba(255,255,255,0.85); max-width: 650px; margin: 0 auto 30px; }
+  .btn { display: inline-block; padding: 16px 36px; border-radius: 50px; font-family: var(--font-head); font-weight: 700; font-size: 0.95rem; letter-spacing: 0.5px; cursor: pointer; border: 2px solid transparent; transition: all 0.3s ease; text-transform: uppercase; }
+  .btn-primary { background: var(--gold); color: var(--navy); }
+  .btn-primary:hover { background: var(--gold-light); color: var(--navy); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(212,175,55,0.4); }
+</style>
+</head>
+<body>
+
+<!-- ==================== SITE HEADER ==================== -->
+<header class="site-header" id="siteHeader">
+  <div class="header-container">
+    <a href="index.html" class="brand" aria-label="HIL Home">
+      <span class="brand-mark">HIL</span>
+      <span class="brand-text">
+        <span class="brand-name">HIL Home</span>
+        <span class="brand-sub">by HAZZ Impian Legacy</span>
+      </span>
+    </a>
+    <nav class="main-nav" id="mainNav" aria-label="Primary">
+      <ul>
+        <li><a href="index.html" data-nav="home">Home</a></li>
+        <li><a href="about-us.html" data-nav="about">About Us</a></li>
+        <li><a href="past-projects.html" data-nav="projects">Past Projects</a></li>
+        <li><a href="license-cert.html" data-nav="license">Licenses &amp; Certifications</a></li>
+      </ul>
+      <a href="index.html#contact" class="nav-cta">Contact Us</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ==================== PAGE HEADER ==================== -->
+<header class="page-header">
+  <div class="container">
+    <span class="eyebrow">Our Portfolio</span>
+    <h1>Past Projects</h1>
+    <p>A complete record of construction, renovation, and development projects delivered by HIL Home across Kelantan, Kuala Lumpur, Selangor, and beyond.</p>
+  </div>
+</header>
+
+<!-- ==================== INTRO STRIP ==================== -->
+<section class="intro-strip">
+  <div class="container">
+    <div class="intro-grid">
+      <div class="intro-item"><div class="label">Projects Recorded</div><div class="value">25+</div></div>
+      <div class="intro-item"><div class="label">Years Active</div><div class="value">Since 2020</div></div>
+      <div class="intro-item"><div class="label">States Covered</div><div class="value">Kelantan, KL, Selangor</div></div>
+      <div class="intro-item"><div class="label">Specialisation</div><div class="value">Design &amp; Build</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PROJECTS BY YEAR ==================== -->
+<section class="projects">
+  <div class="container">
+
+    <!-- ================================================
+         2026
+         ================================================ -->
+    <div class="year-section" id="year-2026">
+      <div class="year-header">
+        <span class="year-badge">2026</span>
+        <div class="year-meta">
+          <h2 class="year-title">Company Experience 2026</h2>
+          <p class="year-subtitle">Current &amp; On-Going Projects</p>
+        </div>
+      </div>
+
+      <div class="project-table-wrap">
+        <table class="project-table">
+          <thead>
+            <tr>
+              <th class="col-no">No.</th>
+              <th>Contract Type</th>
+              <th>Address</th>
+              <th class="col-value">Contract Value</th>
+              <th class="col-date">Completion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-no" data-label="No.">1</td>
+              <td data-label="Contract Type">Kerja-kerja membina dan menyiapkan bangunan baru rumah 1 tingkat untuk Tuan Abdul Ahmad Saidi Bin Taib</td>
+              <td class="col-address" data-label="Address">Lot 3830 Felcra Bukit Tandak, Mukim Rantau Panjang, 17000 Pasir Mas, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 164,528.00</td>
+              <td class="col-date" data-label="Completion"><span class="status-badge status-ongoing">On-Going</span></td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">2</td>
+              <td data-label="Contract Type">Proposed to repair existing septic tank to flows to the new septic tank</td>
+              <td class="col-address" data-label="Address">Lot 1796, Hujung Jalan, Merpati, Belakang Taman Guru, 15100 Kota Bharu, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 2,300.00</td>
+              <td class="col-date" data-label="Completion">26/07/2026</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">3</td>
+              <td data-label="Contract Type">Proposed to renovate and upgrade existing bathroom</td>
+              <td class="col-address" data-label="Address">Lot 1796, Hujung Jalan, Merpati, Belakang Taman Guru, 15100 Kota Bharu, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 6,857.00</td>
+              <td class="col-date" data-label="Completion"><span class="status-badge status-ongoing">On-Going</span></td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">4</td>
+              <td data-label="Contract Type">Proposed to renovate and upgrade existing bathroom</td>
+              <td class="col-address" data-label="Address">Kemumin, Pengkalan Chepa, 16100 Kota Bharu, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 13,760.00</td>
+              <td class="col-date" data-label="Completion">01/08/2026</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="year-summary">
+        <div class="summary-item">
+          <span class="summary-label">Total Projects</span>
+          <span class="summary-value">4</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">On-Going</span>
+          <span class="summary-value">2</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Total Value</span>
+          <span class="summary-value">RM 187,445.00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================
+         2025
+         ================================================ -->
+    <div class="year-section" id="year-2025">
+      <div class="year-header">
+        <span class="year-badge">2025</span>
+        <div class="year-meta">
+          <h2 class="year-title">Company Experience 2025</h2>
+          <p class="year-subtitle">Completed &amp; On-Going Projects</p>
+        </div>
+      </div>
+
+      <div class="project-table-wrap">
+        <table class="project-table">
+          <thead>
+            <tr>
+              <th class="col-no">No.</th>
+              <th>Contract Type</th>
+              <th>Address</th>
+              <th class="col-value">Contract Value</th>
+              <th class="col-date">Completion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-no" data-label="No.">1</td>
+              <td data-label="Contract Type">Kerja-kerja membina dan menyiapkan bangunan baru rumah 1 tingkat untuk Puan Azizan @ Aizan Binti Yaacob</td>
+              <td class="col-address" data-label="Address">Lot 13370 Pdg. Beta Kubang Terap, 17000 Pasir Mas, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 54,853.00</td>
+              <td class="col-date" data-label="Completion">14/01/2025</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">2</td>
+              <td data-label="Contract Type">Proposed to construct awning, floor slab, solid door and water pump cage</td>
+              <td class="col-address" data-label="Address">PT1290 Lorong Che Man, Kampung Kubang Badak, Kampung Dangar, 17000 Pasir Mas, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 9,960.00</td>
+              <td class="col-date" data-label="Completion">26/03/2025</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">3</td>
+              <td data-label="Contract Type">Proposed to construct water tank platform with 2-unit 500 gallon water tank</td>
+              <td class="col-address" data-label="Address">PT1290 Lorong Che Man, Kampung Kubang Badak, Kampung Dangar, 17000 Pasir Mas, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 4,000.00</td>
+              <td class="col-date" data-label="Completion">26/03/2025</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">4</td>
+              <td data-label="Contract Type">To upgrade and repair all area of the existing concrete gutter with estimated 2ft U width and a slab platform at the roof top</td>
+              <td class="col-address" data-label="Address">PT 207 Kampung Gaung, Tendong, 17030 Pasir Mas, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 7,620.00</td>
+              <td class="col-date" data-label="Completion">17/03/2025</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">5</td>
+              <td data-label="Contract Type">Proposed to upgrade frontyard to heavy-duty mosaic</td>
+              <td class="col-address" data-label="Address">Lot 2835, Kg Dangar Kubang Terap, 17000 Pasir Mas, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 15,970.00</td>
+              <td class="col-date" data-label="Completion">23/02/2025</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">6</td>
+              <td data-label="Contract Type">Proposed to upgrade and repair 2 bathrooms</td>
+              <td class="col-address" data-label="Address">PT 3379 Taman Desa Sri Hawa, 18500 Machang, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 6,086.00</td>
+              <td class="col-date" data-label="Completion">08/02/2025</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">7</td>
+              <td data-label="Contract Type">Proposed to install new aluminium composite awning</td>
+              <td class="col-address" data-label="Address">PT 3379 Taman Desa Sri Hawa, 18500 Machang, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 4,116.00</td>
+              <td class="col-date" data-label="Completion">08/02/2025</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">8</td>
+              <td data-label="Contract Type">Proposed to upgrade 2 wooden solid door to security door</td>
+              <td class="col-address" data-label="Address">Lot 1030, Kg Jias, 17000 Pasir Mas, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 6,143.00</td>
+              <td class="col-date" data-label="Completion">08/02/2025</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">9</td>
+              <td data-label="Contract Type">Proposed to construct anti-climb fence with concrete column &amp; concrete fence</td>
+              <td class="col-address" data-label="Address">Kampung Kubang Badak, 17000 Pasir Mas, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 56,870.00</td>
+              <td class="col-date" data-label="Completion">15/05/2025</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">10</td>
+              <td data-label="Contract Type">Renovate existing building, demolish and rebuild 2758 sqft for Puan Rosnah Binti Taib</td>
+              <td class="col-address" data-label="Address">Bukit Tandak, Mukim Rantau Panjang, 17200 Pasir Mas, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 180,000.00</td>
+              <td class="col-date" data-label="Completion">14/06/2025</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">11</td>
+              <td data-label="Contract Type">Requesting for variation order to include all necessary changes, including increase and decrease of quantities</td>
+              <td class="col-address" data-label="Address">Bukit Tandak, Mukim Rantau Panjang, 17200 Pasir Mas, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 14,350.00</td>
+              <td class="col-date" data-label="Completion">29/06/2025</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">12</td>
+              <td data-label="Contract Type">Proposed to repair and upgrade existing building</td>
+              <td class="col-address" data-label="Address">Kampung Lati, 17000 Pasir Mas, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 9,800.00</td>
+              <td class="col-date" data-label="Completion">15/11/2025</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">13</td>
+              <td data-label="Contract Type">Kerja-kerja membina dan menyiapkan bangunan baru rumah 1 tingkat untuk Puan Che Faridah Binti Muhamad Nor</td>
+              <td class="col-address" data-label="Address">Lot 2835 Kg. Dangar Kubang Terap, 17000 Pasir Mas, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 138,580.00</td>
+              <td class="col-date" data-label="Completion">27/02/2025</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">14</td>
+              <td data-label="Contract Type">Proposed to construct 1 unit water tank tower and water pump</td>
+              <td class="col-address" data-label="Address">Lot 2835 Kg. Dangar Kubang Terap, 17000 Pasir Mas, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 3,000.00</td>
+              <td class="col-date" data-label="Completion">14/01/2025</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">15</td>
+              <td data-label="Contract Type">Supply electrical accessories</td>
+              <td class="col-address" data-label="Address">Lot 2835 Kg. Dangar Kubang Terap, 17000 Pasir Mas, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 1,485.00</td>
+              <td class="col-date" data-label="Completion">14/01/2025</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">16</td>
+              <td data-label="Contract Type">Proposed to extend apron and upgrade cement apron to heavy-duty mosaic</td>
+              <td class="col-address" data-label="Address">Lot 2835 Kg. Dangar Kubang Terap, 17000 Pasir Mas, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 6,850.00</td>
+              <td class="col-date" data-label="Completion">14/01/2025</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">17</td>
+              <td data-label="Contract Type">Proposed additional item for kitchen cabinet and toilet accessories</td>
+              <td class="col-address" data-label="Address">Lot 2835 Kg. Dangar Kubang Terap, 17000 Pasir Mas, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 1,390.00</td>
+              <td class="col-date" data-label="Completion">14/01/2025</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">18</td>
+              <td data-label="Contract Type">Requesting for variation order to include all necessary changes, including increase and decrease of quantities</td>
+              <td class="col-address" data-label="Address">Lot 2835 Kg. Dangar Kubang Terap, 17000 Pasir Mas, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 1,160.00</td>
+              <td class="col-date" data-label="Completion">14/01/2025</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="year-summary">
+        <div class="summary-item">
+          <span class="summary-label">Total Projects</span>
+          <span class="summary-value">18</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Total Value</span>
+          <span class="summary-value">RM 525,133.00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================
+         2024
+         ================================================ -->
+    <div class="year-section" id="year-2024">
+      <div class="year-header">
+        <span class="year-badge">2024</span>
+        <div class="year-meta">
+          <h2 class="year-title">Company Experience 2024</h2>
+          <p class="year-subtitle">Completed Projects</p>
+        </div>
+      </div>
+
+      <div class="project-table-wrap">
+        <table class="project-table">
+          <thead>
+            <tr>
+              <th class="col-no">No.</th>
+              <th>Contract Type</th>
+              <th>Address</th>
+              <th class="col-value">Contract Value</th>
+              <th class="col-date">Completion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-no" data-label="No.">1</td>
+              <td data-label="Contract Type">Membaikpulih dan mengecat semula rumah teres 1 tingkat</td>
+              <td class="col-address" data-label="Address">No. 25 Lorong AU4/17A, Taman Seri Keramat Tengah, 54200 Kuala Lumpur</td>
+              <td class="col-value" data-label="Contract Value">RM 7,300.00</td>
+              <td class="col-date" data-label="Completion">01/02/2024</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">2</td>
+              <td data-label="Contract Type">Proposed to upgrade, repaint and clean fences around the house</td>
+              <td class="col-address" data-label="Address">Kampung Jias, 17000 Pasir Mas, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 4,550.00</td>
+              <td class="col-date" data-label="Completion">07/04/2024</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">3</td>
+              <td data-label="Contract Type">Repair &amp; installation of electrical wiring</td>
+              <td class="col-address" data-label="Address">Plaza Prima Setapak, B-G-7 &amp; B-G-8, Jalan Prima Setapak 1, Taman Setapak, 531000 Kuala Lumpur</td>
+              <td class="col-value" data-label="Contract Value">RM 1,200.00</td>
+              <td class="col-date" data-label="Completion">03/02/2024</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">4</td>
+              <td data-label="Contract Type">Proposed to upgrade frontyard to heavy-duty mosaic</td>
+              <td class="col-address" data-label="Address">Pengkalan Chepa, 16100 Kota Bharu, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 3,600.00</td>
+              <td class="col-date" data-label="Completion">15/05/2024</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">5</td>
+              <td data-label="Contract Type">Proposed of installation and renovation work</td>
+              <td class="col-address" data-label="Address">No 16 Jalan 7A/8, Bandar Tasik Puteri, 48020 Rawang, Selangor</td>
+              <td class="col-value" data-label="Contract Value">RM 4,500.00</td>
+              <td class="col-date" data-label="Completion">30/03/2024</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">6</td>
+              <td data-label="Contract Type">Proposed removing of an existing trees and repairing works for the existing retaining wall</td>
+              <td class="col-address" data-label="Address">The Istara Condominium, Lorong Utara (B), Seksyen 52, 46200 Petaling Jaya, Selangor</td>
+              <td class="col-value" data-label="Contract Value">RM 9,500.00</td>
+              <td class="col-date" data-label="Completion">27/02/2024</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">7</td>
+              <td data-label="Contract Type">Proposed to upgrade the existing swimming pool tiles</td>
+              <td class="col-address" data-label="Address">The Istara Condominium, Lorong Utara (B), Seksyen 52, 46200 Petaling Jaya, Selangor</td>
+              <td class="col-value" data-label="Contract Value">RM 66,000.00</td>
+              <td class="col-date" data-label="Completion">04/04/2024</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">8</td>
+              <td data-label="Contract Type">Cadangan menaik taraf dan membaiki Lot Rumah 1030, Kg Jias</td>
+              <td class="col-address" data-label="Address">Lot 1030, Kg Jias, 17000 Pasir Mas, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 1,568.00</td>
+              <td class="col-date" data-label="Completion">25/12/2024</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">9</td>
+              <td data-label="Contract Type">Proposed to upgrade &amp; install 1 unit toilet and 1 unit kitchen window</td>
+              <td class="col-address" data-label="Address">Kg. Bakong, Meranti Pasir Mas, 17000 Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 2,800.00</td>
+              <td class="col-date" data-label="Completion">24/12/2024</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">10</td>
+              <td data-label="Contract Type">Kerja-kerja membina dan menyiapkan bangunan (sambung rumah)</td>
+              <td class="col-address" data-label="Address">Kampung Jias, 17000 Pasir Mas, Kelantan</td>
+              <td class="col-value" data-label="Contract Value">RM 14,680.00</td>
+              <td class="col-date" data-label="Completion">16/05/2024</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="year-summary">
+        <div class="summary-item">
+          <span class="summary-label">Total Projects</span>
+          <span class="summary-value">10</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Total Value</span>
+          <span class="summary-value">RM 115,698.00</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== CTA ==================== -->
+<section class="cta">
+  <div class="container">
+    <h2>Have a Project in Mind?</h2>
+    <p>Whether it's a new home, a renovation, or a commercial development — we'd love to hear about it. Let's build your legacy together.</p>
+    <a href="index.html#contact" class="btn btn-primary">Contact Us</a>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="site-footer">
+  <p>© 2026 <strong>HIL Home</strong>. All rights reserved. | Reg. No. 202003182747 (KT0471223-T)</p>
+</footer>
+
+<script src="assets/js/header.js"></script>
+</body>
+</html>
